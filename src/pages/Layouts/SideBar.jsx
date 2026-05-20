@@ -16,15 +16,21 @@ export default function SideBar(){
             <div className="p-2 hidden md:block w-[5rem]"></div>
             <header className="px-2 py-4 rounded-lg md:w-[5rem] bg-secondary fixed left-2 right-2 md:left-auto md:right-auto md:top-[2dvh] bottom-[1dvh] md:bottom-[2dvh] z-40 transition-all duration-300 ease-in group md:hover:w-[15%]">
                 <nav className="flex md:flex-col justify-around md:justify-between md:min-h-full gap-x-2 md:gap-x-0">
-                    <div className="hidden md:flex items-center group md:pl-2 md:pb-3 md:border-b-2 overflow-hidden md:border-b-primary">
+                    <div className="hidden md:flex items-center group md:pl-2 md:pb-3 md:border-b-1 overflow-hidden md:border-b-primary">
                         <img src="/img/site/logo.png" alt="Logo imagem" className="shrink-0 w-13 h-13 border rounded-full border-primary" />
                         <p className="hidden md:block text-primary text-2xl ps-2 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><span className="font-bold">AZULI</span> PDV</p>
                     </div>
 
                     <div className="flex md:flex-col gap-4 w-full justify-around">
-                        <BarLink link="/" text="Home" url="/">
+                        <BarLink link="/home" text="Home" url="/home">
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
                                 <path d="M9.375 21.875V14.7425C9.375 14.086 9.93464 13.5538 10.625 13.5538H14.375C15.0654 13.5538 15.625 14.086 15.625 14.7425V21.875M11.7756 3.34497L3.6506 8.83961C3.32085 9.06261 3.125 9.4236 3.125 9.80839V20.0919C3.125 21.0767 3.96447 21.875 5 21.875H20C21.0355 21.875 21.875 21.0767 21.875 20.0919V9.80839C21.875 9.4236 21.6792 9.06261 21.3494 8.83961L13.2244 3.34497C12.7907 3.05168 12.2093 3.05168 11.7756 3.34497Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                            </svg>
+                        </BarLink>
+
+                        <BarLink link="/" text="PDV" url="/">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                             </svg>
                         </BarLink>
 
