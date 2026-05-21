@@ -4,7 +4,7 @@ import { DeleteModal } from "./Modal/DeleteModal";
 import { deleteProduct } from "../services/Pdv/PdvService";
 import { toast } from "sonner";
 
-export default function TableItem({uuid, nome, codigo, tipo, quantidade, preco, total, refresh}){
+export default function SearchTableItem({uuid, nome, codigo, tipo, quantidade, preco, total, refresh}){
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
     const handleConfirm = async (e) => {
@@ -29,9 +29,7 @@ export default function TableItem({uuid, nome, codigo, tipo, quantidade, preco, 
             <td class="px-6 py-4 font-bold">{nome}</td>
             <td class="px-6 py-4">{codigo}</td>
             <td class="px-6 py-4 text-center">{tipo}</td>
-            <td class="px-6 py-4 text-center">{quantidade}</td>
             <td class="px-6 py-4 text-center">{formatNumber(preco)}</td>
-            <td class="px-6 py-4 text-center">{formatNumber(preco * quantidade)}</td>
             <td class="px-6 py-4 text-center">
                 <button type='button' onClick={() => setDeleteModalOpen(true)} className="bg-red-400 shadow-lg p-2 rounded-md text-center text-primary cursor-pointer transition-all hover:bg-red-500">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">

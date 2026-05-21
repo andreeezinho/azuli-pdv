@@ -47,3 +47,20 @@ export const deleteProduct = async (uuid) => {
         throw error;
     }
 }
+
+export const deleteAllProducts = async (uuid) => {
+    try{
+        const response = await api.delete('/pdv/remove-all', {
+            data: {
+                venda_uuid: uuid
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
