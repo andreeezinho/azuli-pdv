@@ -5,7 +5,7 @@ import Input from "../Input";
 import { getProducts } from "../../services/Produto/ProdutoService";
 import { useEffect, useState } from "react";
 
-export default function SearchModal({isOpen, onClose, onConfirm}){
+export default function SearchModal({isOpen, onClose, venda_uuid, refresh, insertCode}){
     const [search, setSearch] = useState({
         nome_codigo: "",
         ativo: 1
@@ -38,6 +38,10 @@ export default function SearchModal({isOpen, onClose, onConfirm}){
         }else{
             setProducts(null);
         }
+    }
+
+    const refreshSearch = async () => {
+        setProducts(null);
     }
 
     console.log(products);
@@ -82,13 +86,15 @@ export default function SearchModal({isOpen, onClose, onConfirm}){
                                 return <SearchTableItem
                                     key={item.uuid} 
                                     uuid={item.uuid} 
+                                    venda_uuid={venda_uuid} 
                                     nome={item.nome}
                                     codigo={item.codigo}
                                     tipo={item.tipo}
-                                    quantidade={1}
                                     preco={item.preco}
-                                    total={0.00}
-                                    refresh={null}
+                                    onClose={onClose}
+                                    refresh={refresh}
+                                    refreshSearch={refreshSearch}
+                                    insertCode={insertCode}
                                 />
                             })}
                         </tbody>

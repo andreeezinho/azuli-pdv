@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import MainLayout from "../Layouts/MainLayout";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -22,6 +22,7 @@ export default function Home(){
         codigo: "",
         quantidade: 1
     });
+    const inputRef = useRef(null);
 
     const getSale = async () => {
         const response = await getUserSale();
@@ -41,9 +42,12 @@ export default function Home(){
             
             setFormData({
                 ...formData,
-                codigo : ''
+                codigo : '',
+                quantidade: 1
             });
 
+            inputRef.current.focus();
+            
             await getSale();
         }catch(error){
             toast.error("Erro ao inserir produto");
@@ -156,7 +160,7 @@ export default function Home(){
                         <form className="h-1/3 py-10" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="flex bg-details-white h-10">
-                                    <input type="number" name="codigo" id="codigo" onChange={handleChange} autoFocus value={formData.codigo} placeholder="Código" class="w-full border-transparent bg-details-white text-black rounded-md h-10 p-3 shadow-xs focus:outline-none" required />
+                                    <input type="number" name="codigo" id="codigo" onChange={handleChange} autoFocus ref={inputRef} value={formData.codigo} placeholder="Código" class="w-full border-transparent bg-details-white text-black rounded-md h-10 p-3 shadow-xs focus:outline-none" required />
                                     <button type="button" onClick={() => setSearchModalOpen(true)} class="bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -166,7 +170,9 @@ export default function Home(){
                                     <SearchModal
                                         isOpen={isSearchModalOpen}
                                         onClose={() => setSearchModalOpen(false)}
-                                        onConfirm={handleConfirm}
+                                        venda_uuid={sale?.data?.venda?.uuid}
+                                        refresh={getSale}
+                                        insertCode={(code) => formData.codigo = code}
                                     />
                                 </div>
 
