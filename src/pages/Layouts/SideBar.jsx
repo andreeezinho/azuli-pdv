@@ -17,7 +17,7 @@ export default function SideBar(){
             <header className="px-2 py-4 rounded-lg md:w-[5rem] bg-secondary fixed left-2 right-2 md:left-auto md:right-auto md:top-[2dvh] bottom-[1dvh] md:bottom-[2dvh] z-40 transition-all duration-300 ease-in group md:hover:w-[15%]">
                 <nav className="flex md:flex-col justify-around md:justify-between md:min-h-full gap-x-2 md:gap-x-0">
                     <div className="hidden md:flex items-center group md:pl-2 md:pb-3 md:border-b-1 overflow-hidden md:border-b-primary">
-                        <img src="/img/site/logo.png" alt="Logo imagem" className="shrink-0 w-13 h-13 border rounded-full border-primary" />
+                        <img src="/img/site/logo.png" alt="Logo imagem" className="shrink-0 w-10 h-10 ml-1 border border-primary rounded-full" />
                         <p className="hidden md:block text-primary text-2xl ps-2 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><span className="font-bold">AZULI</span> PDV</p>
                     </div>
 

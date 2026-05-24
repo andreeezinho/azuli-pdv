@@ -1,15 +1,14 @@
 import { useState } from "react";
 import formatNumber from "../helpers/formatNumber";
 import { DeleteModal } from "./Modal/DeleteModal";
-import { addProduct } from "../services/Pdv/PdvService";
 import { toast } from "sonner";
 
-export default function SearchTableItem({uuid, venda_uuid, nome, codigo, tipo, preco, onClose, refresh, refreshSearch, insertCode}){
+export default function SearchClientTableItem({uuid, nome, documento, telefone, onClose, refresh, refreshSearch, insertValue}){
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try{
-            await insertCode(codigo);
+            await insertValue({documento: documento, nome: nome});
             
             await refresh();
 
@@ -17,7 +16,7 @@ export default function SearchTableItem({uuid, venda_uuid, nome, codigo, tipo, p
 
             await onClose();
         }catch(error){
-            toast.error("Erro ao inserir produto");
+            toast.error("Erro ao inserir cliente");
             console.log(error);
         }
     }
@@ -25,9 +24,8 @@ export default function SearchTableItem({uuid, venda_uuid, nome, codigo, tipo, p
     return(
         <tr class="odd:bg-primary even:bg-details-white border-b border-details text-gray-800">
             <td class="px-6 py-4 font-bold">{nome}</td>
-            <td class="px-6 py-4">{codigo}</td>
-            <td class="px-6 py-4 text-center">{tipo}</td>
-            <td class="px-6 py-4 text-center">{formatNumber(preco)}</td>
+            <td class="px-6 py-4">{documento}</td>
+            <td class="px-6 py-4 text-center">{telefone}</td>
             <td class="px-6 py-4 text-center">
                 <button type='button' onClick={handleSubmit} className="bg-secondary shadow-lg p-2 rounded-md text-center text-primary cursor-pointer transition-all hover:bg-secondary-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">

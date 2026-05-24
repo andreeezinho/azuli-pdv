@@ -13,7 +13,7 @@ export default function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
     const [formData, setFormData] = useState({
-        email: "",
+        usuario: "",
         senha: "",
     });
 
@@ -28,31 +28,31 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await login(formData);
-            console.log(response);
+
             if (response) {
                 toast.success("Login realizado com sucesso");
                 navigate('/');
             }
         } catch (error) {
-            toast.error("Email ou senha inválidos");
+            toast.error("Usuário ou senha inválidos");
         }
     }
-    
+
     return (
         <LoginLayout>
-            <div className="hidden md:flex md:1/3 h-full">
-                <img src="/login-logo.svg" alt="Login image" className="m-auto w-2/4 lg:w-3/4" />
+            <div className="hidden md:flex md:flex-col md:w-1/2 h-full bg-secondary">
+                <img src="/img/site/cabin-logo.svg" alt="Login image" className="m-auto w-3/5" />
             </div>
-            <div className="w-full md:w-2/3 flex flex-col h-full text-primary">
+            <div className="w-full md:w-1/2 flex flex-col h-full text-secondary">
                 <div className="w-full flex flex-col gap-y-4 m-auto">
                     <form onSubmit={handleLogin} className="w-full lg:w-1/2 flex flex-col gap-y-4 mx-auto mb-10">
                         <h1 className="text-3xl font-bold my-4 m-auto">Login</h1>
 
                         <Input
-                            label={"Email"}
-                            type={"email"}
-                            placeholder={"Insira seu email"}
-                            name={"email"}
+                            label={"Usuário"}
+                            type={"usuario"}
+                            placeholder={"Insira seu usuario"}
+                            name={"usuario"}
                             onChange={handleChange}
                         />
 

@@ -64,3 +64,102 @@ export const deleteAllProducts = async (uuid) => {
         throw error;
     }
 }
+
+export const addPaymentMethod = async (data) => {
+    try{
+        const response = await api.post('/pdv/pagamento', data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const getClientFromSale = async (venda_uuid) => {
+    try{
+        const response = await api.get(`/pdv/${venda_uuid}/cliente`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const addClient = async (data) => {
+    try{
+        const response = await api.post('/pdv/vincular-cliente', data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const removeClient = async (data) => {
+    try{
+        const response = await api.delete('/pdv/desvincular-cliente', {
+            data: data,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const inWait = async (data) => {
+    try{
+        const response = await api.put('/pdv/em-espera', data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const cancel = async (data) => {
+    try{
+        const response = await api.put('/pdv/cancelar', data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export const finish = async (data) => {
+    try{
+        const response = await api.put('/pdv/finalizar', data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}

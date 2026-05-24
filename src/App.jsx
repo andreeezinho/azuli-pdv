@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./hooks/PrivateRoute";
 import Login from "./pages/Login/Login";
-import Home from "./pages/Home/Home";
+import Pdv from "./pages/Pdv/Pdv";
+import Finalizar from "./pages/Pdv/Finalizar";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import LoginRoute from "./hooks/LoginRoute";
 import RecoveryPassword from "./pages/RecoveryPassword/RecoveryPassword";
@@ -10,7 +11,7 @@ import { Toaster } from "sonner";
 function App() {
   return(
     <>
-      <Toaster position='top-right' richColors />
+      <Toaster position='top-center' richColors />
 
       <Router>
         <Routes>
@@ -23,7 +24,8 @@ function App() {
           <Route path="/recuperar-senha" element={<RecoveryPassword />} />
 
           <Route path="/" element={<PrivateRoute />}>
-            <Route index element={<Home />} />
+            <Route index element={<Pdv />} />
+            <Route path="/finalizar" element={<Finalizar />} />
             <Route path="/me" element={<MyProfile />} />
           </Route>
 

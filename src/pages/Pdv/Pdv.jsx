@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -22,7 +23,9 @@ export default function Home(){
         codigo: "",
         quantidade: 1
     });
+
     const inputRef = useRef(null);
+    const navigate = useNavigate();
 
     const getSale = async () => {
         const response = await getUserSale();
@@ -72,6 +75,18 @@ export default function Home(){
         }
     }
 
+    const handleVerifySale = async (e) => {
+        e.preventDefault();
+
+        if(sale?.data?.venda?.total == 0 || sale?.data?.produtos.length == 0){
+            toast.info("A venda não possui nenhum produto");
+
+            return;
+        }
+
+        navigate("/finalizar");
+    } 
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -82,12 +97,19 @@ export default function Home(){
     return( 
         <MainLayout>
             <div className="w-full h-full rounded-md flex flex-col shadow pb-1">
-                <div className="w-full text-center py-4">
+                <div className="w-full py-4 text-center pl-4 pr-16">
+                    <button type="button" className="text-primary p-1 rounded-md bg-secondary hover:bg-secondary-dark cursor-pointer float-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                    
                     <h3 className="text-lg font-bold text-secondary">Venda em aberto</h3>
                 </div>
 
                 <div className="flex w-full h-full gap-x-2">
                     <div className="w-2/3 h-full p-4">
+                        
                         <div className="overflow-y-scroll min-h-[80dvh] max-h-[80dvh]">
                             {loading ? (
                                 <>
@@ -161,7 +183,7 @@ export default function Home(){
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="flex bg-details-white h-10">
                                     <input type="number" name="codigo" id="codigo" onChange={handleChange} autoFocus ref={inputRef} value={formData.codigo} placeholder="Código" class="w-full border-transparent bg-details-white text-black rounded-md h-10 p-3 shadow-xs focus:outline-none" required />
-                                    <button type="button" onClick={() => setSearchModalOpen(true)} class="bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                                    <button type="button" onClick={() => setSearchModalOpen(true)} class="bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-4 rounded cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                         </svg>
@@ -172,7 +194,7 @@ export default function Home(){
                                         onClose={() => setSearchModalOpen(false)}
                                         venda_uuid={sale?.data?.venda?.uuid}
                                         refresh={getSale}
-                                        insertCode={(code) => formData.codigo = code}
+                                        insertCode={(code) => {formData.codigo = code; inputRef.current.focus();}}
                                     />
                                 </div>
 
@@ -207,7 +229,7 @@ export default function Home(){
                                     text={"Deseja cancelar a venda em andamento?"}
                                 />
 
-                                <button type='button' className="w-full bg-green-500 shadow-lg rounded-md px-8 py-2 text-center text-primary cursor-pointer transition-all hover:bg-green-900">Finalizar</button>
+                                <button type='button' onClick={handleVerifySale} className="w-full bg-green-500 shadow-lg rounded-md px-8 py-2 text-center text-primary cursor-pointer transition-all hover:bg-green-900">Finalizar</button>
                             </div>
                         </div>
                     </div>

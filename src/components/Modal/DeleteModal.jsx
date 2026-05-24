@@ -9,7 +9,7 @@ export function DeleteModal({isOpen, onClose, onConfirm, title, text}){
                 </div>
 
                 <div className="py-2">
-                    <p className="text-md text-secondary">{text}</p>
+                    <p className="text-md text-secondary text-center">{text}</p>
 
                     <div className="flex gap-x-2 mt-8 px-10">
                         <button type='button' onClick={onClose} className="w-full bg-red-400 shadow-lg rounded-md px-8 py-2 text-center text-primary cursor-pointer transition-all hover:bg-red-500">Cancelar</button>
