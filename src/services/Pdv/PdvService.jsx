@@ -24,7 +24,7 @@ export const addProduct = async (uuid, data) => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         });
-
+        console.log(response);
         return response.data;
     }catch(error){
         throw error;

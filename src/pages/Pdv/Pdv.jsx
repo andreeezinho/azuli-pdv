@@ -36,7 +36,7 @@ export default function Home(){
     useEffect(() => {
         getSale();
     }, []);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -181,7 +181,7 @@ export default function Home(){
 
                         <form className="h-1/3 py-10" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-2">
-                                <div className="flex bg-details-white h-10">
+                                <div className="flex bg-details-white rounded-md h-10">
                                     <input type="number" name="codigo" id="codigo" onChange={handleChange} autoFocus ref={inputRef} value={formData.codigo} placeholder="Código" class="w-full border-transparent bg-details-white text-black rounded-md h-10 p-3 shadow-xs focus:outline-none" required />
                                     <button type="button" onClick={() => setSearchModalOpen(true)} class="bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-4 rounded cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
