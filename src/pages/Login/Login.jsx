@@ -28,7 +28,7 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await login(formData);
-
+            console.log(response);
             if (response) {
                 toast.success("Login realizado com sucesso");
                 navigate('/');

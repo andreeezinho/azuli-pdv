@@ -60,11 +60,11 @@ export default function RecoveryPassword(){
 
     return(
         <LoginLayout>
-            <div className="hidden md:flex md:1/3 h-full">
-                <img src="/forgot-password.svg" alt="Login image" className="m-auto w-2/4 lg:w-3/4" />
+            <div className="hidden md:flex md:w-1/3 h-full bg-secondary">
+                <img src="/img/site/esqueceu-senha-logo.svg" alt="Esqueceu senha imagem" className="m-auto w-2/4 lg:w-3/4" />
             </div>
 
-            <div className="w-full md:w-2/3 flex flex-col h-full text-primary">
+            <div className="w-full md:w-2/3 flex flex-col h-full text-secondary">
                 <div className="w-full flex flex-col gap-y-4 m-auto">
                     <div className="w-full lg:w-1/2 flex flex-col gap-y-4 mx-auto mb-10">
                         <h1 className="text-3xl font-bold mt-0 m-auto">Recuperar Senha</h1>

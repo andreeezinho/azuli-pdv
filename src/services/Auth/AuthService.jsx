@@ -3,7 +3,7 @@ import api from "../api";
 export const auth = async (credentials) => {
     try {
         const response = await api.post('/auth', credentials);
-        
+        console.log(response);
         return response.data;
     } catch (error) {
         throw error;
