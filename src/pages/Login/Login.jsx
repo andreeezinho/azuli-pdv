@@ -41,10 +41,12 @@ export default function Login() {
     return (
         <LoginLayout>
             <div className="hidden md:flex md:flex-col md:w-1/2 h-full bg-secondary">
+                <div class="pointer-events-none absolute inset-0" style={{background: "radial-gradient(130% 100% at 50% -10%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 55%), linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%)"}}></div>   
                 <img src="/img/site/cabin-logo.svg" alt="Login image" className="m-auto w-3/5" />
             </div>
             <div className="w-full md:w-1/2 flex flex-col h-full text-secondary">
                 <div className="w-full flex flex-col gap-y-4 m-auto">
+                    <h1 className="text-2xl m-auto pl-12"><b className="text-5xl">AZULI</b> PDV</h1>
                     <form onSubmit={handleLogin} className="w-full lg:w-1/2 flex flex-col gap-y-4 mx-auto mb-10">
                         <h1 className="text-3xl font-bold my-4 m-auto">Login</h1>
 
