@@ -18,7 +18,7 @@ export default function SideBar(){
                 <nav className="flex md:flex-col justify-around md:justify-between md:min-h-full gap-x-2 md:gap-x-0">
                     <div className="hidden md:flex items-center group md:pl-2 md:pb-3 md:border-b-1 overflow-hidden md:border-b-primary">
                         <img src="/img/site/logo.png" alt="Logo imagem" className="shrink-0 w-10 h-10 ml-1 border border-primary rounded-full" />
-                        <p className="hidden md:block text-primary text-2xl ps-2 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><span className="font-bold">AZULI</span> PDV</p>
+                        <p className="hidden md:block text-primary text-sm ps-2 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><span className="font-bold text-2xl">AZULI</span> PDV</p>
                     </div>
 
                     <div className="flex md:flex-col gap-4 w-full justify-around">
@@ -31,6 +31,12 @@ export default function SideBar(){
                         <BarLink link="/" text="PDV" url="/">
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                            </svg>
+                        </BarLink>
+
+                        <BarLink link="/produtos" text="Produtos" url="/produtos">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" stroke="white" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </BarLink>
 

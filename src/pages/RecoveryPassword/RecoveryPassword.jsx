@@ -60,7 +60,8 @@ export default function RecoveryPassword(){
 
     return(
         <LoginLayout>
-            <div className="hidden md:flex md:w-1/3 h-full bg-secondary">
+            <div className="hidden md:flex md:w-1/3 h-full bg-secondary relative">
+                <div class="pointer-events-none absolute inset-0" style={{background: "radial-gradient(130% 100% at 50% -10%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 55%), linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%)"}}></div>   
                 <img src="/img/site/esqueceu-senha-logo.svg" alt="Esqueceu senha imagem" className="m-auto w-2/4 lg:w-3/4" />
             </div>
 

@@ -40,7 +40,7 @@ export default function Login() {
 
     return (
         <LoginLayout>
-            <div className="hidden md:flex md:flex-col md:w-1/2 h-full bg-secondary">
+            <div className="hidden md:flex md:flex-col md:w-1/2 h-full bg-secondary relative">
                 <div class="pointer-events-none absolute inset-0" style={{background: "radial-gradient(130% 100% at 50% -10%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 55%), linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%)"}}></div>   
                 <img src="/img/site/cabin-logo.svg" alt="Login image" className="m-auto w-3/5" />
             </div>

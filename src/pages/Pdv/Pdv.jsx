@@ -176,7 +176,7 @@ export default function Home(){
                     <div className="w-1/3 h-full p-4 flex flex-col gap-y-15 border-l-1 border-details">
                         <div class="flex flex-col text-center h-1/3">
                             <img src="/img/site/logo.png" alt="Logo Site" class="mx-auto w-[35%]" />
-                            <p className="text-secondary mt-2 text-2xl"><span className="font-bold">AZULI</span> PDV</p>
+                            <p className="text-secondary mt-2 text-sm pl-3"><span className="font-bold text-2xl">AZULI</span> PDV</p>
                         </div>
 
                         <form className="h-1/3 py-10" onSubmit={handleSubmit}>
