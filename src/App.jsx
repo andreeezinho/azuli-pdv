@@ -21,13 +21,17 @@ function App() {
             <Route index element={<Login />} />
           </Route>
 
-          {/* ROTAS PUBLICAS */}
+          {/* ROTAS PUBLICAS */} 
           <Route path="/recuperar-senha" element={<RecoveryPassword />} />
 
           <Route path="/" element={<PrivateRoute />}>
             <Route index element={<Pdv />} />
             <Route path="/finalizar" element={<Finalizar />} />
+
+            {/* products routes */}
             <Route path="/produtos" element={<Product />} />
+
+            {/* profile routes */}
             <Route path="/me" element={<MyProfile />} />
           </Route>
 

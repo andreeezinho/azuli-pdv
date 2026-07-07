@@ -1,24 +1,9 @@
 import MainLayout from "../Layouts/MainLayout";
-import Table from "../../components/Table";
-import TableBody from "../../components/Table/TableBody";
-import {getProducts} from "../../services/Produto/ProdutoService";
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import Table from "./components/ListTable";
+import ListTable from "./components/ListTable";
 
 export default function Product(){
-    const [products, setProducts] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    const list = async () => {
-        const response = await getProducts();
-        setProducts(response);
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        list();
-    }, []);
-    console.log(products);
     return(
         <MainLayout>
             <div className="w-full h-full rounded-md flex flex-col shadow pb-1">
@@ -32,52 +17,7 @@ export default function Product(){
                 </div>
 
                 <div className="w-full flex flex-col h-full text-secondary p-10">
-                    <Table>
-                        <thead className="text-xs text-primary uppercase bg-secondary">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left">
-                                    Nome
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left">
-                                    Código
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-center">
-                                    Tipo
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-center">
-                                    Estoque
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-center">
-                                    Preço
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Grupo
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-center">
-                                    Ativo
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-center">
-                                    -
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {products?.data?.map((item) => {
-                                return <TableBody 
-                                    key={item.uuid} 
-                                    uuid={item.uuid} 
-                                    nome={item.nome}
-                                    codigo={item.codigo}
-                                    tipo={item.tipo}
-                                    estoque={item.estoque}
-                                    preco={item.preco}
-                                    grupo={item?.grupoProduto?.nome}
-                                    ativo={item.ativo}
-                                    refresh={getProducts}
-                                />
-                            })}
-                        </tbody>
-                    </Table>
+                    <ListTable></ListTable>
                 </div>
             </div>
         </MainLayout>
