@@ -14,3 +14,17 @@ export const getProducts = async (params) => {
         throw error;
     }
 }
+
+export const createProduct = async (data) => {
+    try{
+        const response = await api.post(`/produtos`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
