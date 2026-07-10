@@ -4,7 +4,7 @@ import ListTable from "./components/ListTable";
 import Forms from "./components/Forms";
 
 export default function Product(){
-    const [container, setContainer] = useState(false);
+    const [container, setContainer] = useState(true);
 
     const handleContainer = async () => {
         if(container){
@@ -17,7 +17,7 @@ export default function Product(){
     return(
         <MainLayout>
             <div className="w-full h-full rounded-md flex flex-col shadow pb-1">
-                <div className="w-full py-4 text-center pl-4 pr-16">           
+                <div className="w-full py-4 text-center pl-4 pr-10">           
                     <button type="button" onClick={handleContainer} className="text-primary p-1 rounded-md bg-secondary hover:bg-secondary-dark cursor-pointer float-end">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -30,7 +30,7 @@ export default function Product(){
                     {container ? (
                         <ListTable />
                     ) : (
-                        <Forms />
+                        <Forms handleContainer={handleContainer} />
                     )}
                 </div>
             </div>

@@ -8,7 +8,7 @@ import Select from "../../../components/Select";
 import Button from "../../../components/Button";
 import { toast } from "sonner";
 
-export default function Forms(){
+export default function Forms({handleContainer}){
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nome: '',
@@ -96,13 +96,15 @@ export default function Forms(){
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await createProduct(formData);
-        console.log(reponse);
-        if(response.data){
+        
+        try{
+            const response = await createProduct(formData);
+
             toast.success("Produto cadastrado com sucesso!");
-            navigate("/produtos");
-        }else{
-            toast.error(response.message ?? "Erro ao cadastrar produto");
+            handleContainer();
+        }catch(error){
+            console.log(error.response.data.message);
+            toast.error(error.response.data.message ?? "Erro ao cadastrar produto");
         }
     }
 
@@ -115,7 +117,13 @@ export default function Forms(){
     
     return(
         <div className="flex flex-col gap-y-2">
-            <div className="text-start my-5 text-lg pb-2 border-b border-gray-200">
+            <div className="text-start my-5 text-lg pb-2 border-b border-gray-200 flex gap-x-2 items-center">
+                <button onClick={handleContainer} className="p-2 px-4 rounded-lg my-2 hover:shadow-md cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                    </svg>
+                </button>
+
                 <p>Cadastrar Produto</p>
             </div>
 
