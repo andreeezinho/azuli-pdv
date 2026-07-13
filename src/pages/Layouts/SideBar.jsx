@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { BarLink } from "../../components/BarLink";
 import { useNavigate } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function SideBar(){
     const { logout } = useAuth();
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -34,12 +36,26 @@ export default function SideBar(){
                             </svg>
                         </BarLink>
 
-                        <BarLink link="/produtos" text="Produtos" url="/produtos">
-                            <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                        <button type="button" onClick={() => setOpen(!open)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
+                            <div className="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="current" width="25" height="25" viewBox="0 0 25 25" stroke-width="1.5" stroke="currentColor" className="">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                                </svg>
+                                <p className={`text-primary hidden md:block text-md ms-3 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100`}>Loja</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                             </svg>
-                        </BarLink>
+                        </button>
 
+                        {open && ( 
+                            <div className="pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2">
+                                <BarLink link="/produtos" text="Produtos" url="/produtos" className="md:h-[30px]" />
+                                <BarLink link="/usuarios" text="Usuários" url="/usuarios" className="md:h-[30px]" />
+                                <BarLink link="/clientes" text="Clientes" url="/clientes" className="md:h-[30px]" />
+                            </div>
+                        )}
+                        
                         <BarLink link="/notificacoes" text="Notificações" url="/notificacoes">
                             <svg width="24" height="24" viewBox="0 0 19 20" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
                                 <path d="M11.919 14.832C13.7822 14.6114 15.6129 14.1717 17.373 13.522C15.8824 11.8708 15.0587 9.7245 15.062 7.5V6.75C15.062 5.1587 14.4299 3.63258 13.3046 2.50736C12.1794 1.38214 10.6533 0.75 9.062 0.75C7.4707 0.75 5.94458 1.38214 4.81936 2.50736C3.69414 3.63258 3.062 5.1587 3.062 6.75V7.5C3.06502 9.72463 2.24099 11.871 0.75 13.522C2.483 14.162 4.31 14.607 6.205 14.832M11.919 14.832C10.021 15.0571 8.10301 15.0571 6.205 14.832M11.919 14.832C12.0631 15.2819 12.0989 15.7594 12.0236 16.2257C11.9482 16.692 11.7638 17.134 11.4854 17.5156C11.2069 17.8972 10.8423 18.2076 10.4212 18.4216C10.0001 18.6356 9.53438 18.7472 9.062 18.7472C8.58962 18.7472 8.12392 18.6356 7.70281 18.4216C7.28169 18.2076 6.91707 17.8972 6.63862 17.5156C6.36017 17.134 6.17576 16.692 6.10041 16.2257C6.02506 15.7594 6.0609 15.2819 6.205 14.832" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

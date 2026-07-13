@@ -4,7 +4,7 @@ import ListTable from "./components/ListTable";
 import Forms from "./components/Forms";
 
 export default function Product(){
-    const [container, setContainer] = useState(true);
+    const [container, setContainer] = useState(false);
 
     const handleContainer = async () => {
         if(container){

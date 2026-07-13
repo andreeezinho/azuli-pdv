@@ -26,7 +26,8 @@ export default function Forms({handleContainer}){
         cfop: '',
         ncm: '',
         cest: '',
-        ativo: ''
+        ativo: '',
+        origem: ''
     });
 
     const [grupo, setGrupo] = useState(null);
@@ -117,7 +118,7 @@ export default function Forms({handleContainer}){
     
     return(
         <div className="flex flex-col gap-y-2">
-            <div className="text-start my-5 text-lg pb-2 border-b border-gray-200 flex gap-x-2 items-center">
+            <div className="text-start my-3 text-lg pb-2 border-b border-gray-200 flex gap-x-2 items-center">
                 <button onClick={handleContainer} className="p-2 px-4 rounded-lg my-2 hover:shadow-md cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
@@ -143,6 +144,25 @@ export default function Forms({handleContainer}){
                 <Input type={"number"} label={"Quant entrada"} placeholder={"Insira a quantidade"} name={"quant_entrada"} value={formData.quant_entrada} onChange={handleChange} colSpan={"col-span-1"} />
                 <Input type={"number"} label={"Quant saída"} placeholder={"Insira a quantidade"} name={"quant_saida"} value={formData.quant_saida} onChange={handleChange} colSpan={"col-span-1"} />
                 <Select label={"Grupo de Produto"} selected={"Escolha o grupo"} name={"grupo_produto_id"} value={formData.grupo_produto_id} onChange={handleChange} colSpan={"col-span-1"} options={grupo} />
+                <Select label={"Estado"} selected={"Selecione o estado"} name={"ativo"} value={formData.ativo} onChange={handleChange} colSpan={"col-span-1"}
+                    options={[
+                        {uuid: 1, nome: 'Ativo'},
+                        {uuid: 0, nome: 'Inativo'}
+                    ]}
+                />
+
+                <div className="w-full border-b border-gray-200 my-6 col-span-full">
+                    <p>Tributação</p>
+                </div>
+
+                <Select label={"Origem"} selected={"Escolha a origem do produto"} name={"origem"} value={formData.origem} onChange={handleChange} colSpan={"col-span-2"} options={[
+                    {uuid: 0, nome: '0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8'},
+                    {uuid: 1, nome: '1 - Estrangeira - Importação direta'},
+                    {uuid: 2, nome: '2 - Estrangeira - Adquirida no mercado interno'},
+                    {uuid: 3, nome: '3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%'},
+                    {uuid: 4, nome: '4 - Nacional, cuja produção foi feita conforme os processos produtivos básicos (PPB)'},
+                    {uuid: 5, nome: '5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%'},
+                ]} />
                 <Select label={"ICSM"} selected={"Escolha o ICMS"} name={"icms_id"} value={formData.icms_id} onChange={handleChange} colSpan={"col-span-1"} options={icms} />
                 <Select label={"IPI"} selected={"Escolha o IPI"} name={"ipi_id"} value={formData.ipi_id} onChange={handleChange} colSpan={"col-span-1"} options={ipi} />
                 <Select label={"PIS"} selected={"Escolha o PIS"} name={"pis_id"} value={formData.pis_id} onChange={handleChange} colSpan={"col-span-1"} options={pis} />
@@ -150,12 +170,6 @@ export default function Forms({handleContainer}){
                 <Input type={"number"} label={"CFOP"} placeholder={"Insira o CFOP"} name={"cfop"} value={formData.cfop} onChange={handleChange} colSpan={"col-span-1"} />
                 <Input type={"number"} label={"NCM"} placeholder={"Insira o NCM"} name={"ncm"} value={formData.ncm} onChange={handleChange} colSpan={"col-span-1"} />
                 <Input type={"number"} label={"CEST"} placeholder={"Insira o CEST"} name={"cest"} value={formData.cest} onChange={handleChange} colSpan={"col-span-1"} />
-                <Select label={"Estado"} selected={"Selecione o estado"} name={"ativo"} value={formData.ativo} onChange={handleChange} colSpan={"col-span-1"}
-                    options={[
-                        {uuid: 1, nome: 'Ativo'},
-                        {uuid: 0, nome: 'Inativo'}
-                    ]}
-                />
 
                 <div className="col-span-full text-center">
                     <Button type={'submit'} text={'Cadastrar'} width={'shadow-lg'} />
