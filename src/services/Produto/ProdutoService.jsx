@@ -28,3 +28,17 @@ export const createProduct = async (data) => {
         throw error;
     }
 }
+
+export const updateProduct = async (data) => {
+    try{
+        const response = await api.put(`/produtos/${data.uuid}`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}

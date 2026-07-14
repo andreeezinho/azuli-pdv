@@ -49,7 +49,7 @@ export default function SideBar(){
                         </button>
 
                         {open && ( 
-                            <div className="pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2">
+                            <div className="ml-8 pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2 border-l border-gray-500">
                                 <BarLink link="/produtos" text="Produtos" url="/produtos" className="md:h-[30px]" />
                                 <BarLink link="/usuarios" text="Usuários" url="/usuarios" className="md:h-[30px]" />
                                 <BarLink link="/clientes" text="Clientes" url="/clientes" className="md:h-[30px]" />

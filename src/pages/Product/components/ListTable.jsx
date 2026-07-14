@@ -5,7 +5,7 @@ import Input from "../../../components/Input";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
-export default function ListTable(){
+export default function ListTable({handleContainer}){
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
     const [params, setParams] = useState({
@@ -86,6 +86,7 @@ export default function ListTable(){
                     {products?.data?.map((item) => {
                         return <TableBody 
                             key={item.uuid} 
+                            item={item} 
                             uuid={item.uuid} 
                             nome={item.nome}
                             codigo={item.codigo}
@@ -95,6 +96,7 @@ export default function ListTable(){
                             grupo={item?.grupoProduto?.nome}
                             ativo={item.ativo}
                             refresh={getProducts}
+                            handleContainer={handleContainer}
                         />
                     })}
                 </tbody>

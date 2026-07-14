@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createProduct } from "../../../services/Produto/ProdutoService";
+import { createProduct, updateProduct } from "../../../services/Produto/ProdutoService";
 import { getGroups } from "../../../services/GrupoProduto/GrupoProdutoService";
 import { getTributacoes } from "../../../services/Tributacao/TributacaoService";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
 import Button from "../../../components/Button";
+import CancelButton from "../../../components/CancelButton";
 import { toast } from "sonner";
 
-export default function Forms({handleContainer}){
+export default function Forms({handleContainer, product}){
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nome: '',
@@ -92,20 +93,35 @@ export default function Forms({handleContainer}){
         getIpi('ipi');
         getPis('pis');
         getCofins('cofins');
+
+        if(product){
+            setFormData({
+                ...product,
+                icms_id: product?.icms?.uuid,
+                ipi_id: product?.ipi?.uuid,
+                pis_id: product?.pis?.uuid,
+                cofins_id: product?.cofins?.uuid,
+            });
+        }
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         
         try{
-            const response = await createProduct(formData);
+            if(product){
+                const response = await updateProduct(formData);
+                console.log(response);
+                toast.success("Produto editado com sucesso!");
+            }else{
+                const response = await createProduct(formData);
 
-            toast.success("Produto cadastrado com sucesso!");
-            handleContainer();
+                toast.success("Produto cadastrado com sucesso!");
+                handleContainer();
+            }
         }catch(error){
-            console.log(error.response.data.message);
-            toast.error(error.response.data.message ?? "Erro ao cadastrar produto");
+            console.log(error.response.data.errors);
+            toast.error(error.response.data.message ?? `Erro ao ${product ? 'editar' : 'cadastrar'} produto`);
         }
     }
 
@@ -115,7 +131,7 @@ export default function Forms({handleContainer}){
             [e.target.name]: e.target.value,
         })
     }
-    
+    console.log(formData);
     return(
         <div className="flex flex-col gap-y-2">
             <div className="text-start my-3 text-lg pb-2 border-b border-gray-200 flex gap-x-2 items-center">
@@ -125,7 +141,7 @@ export default function Forms({handleContainer}){
                     </svg>
                 </button>
 
-                <p>Cadastrar Produto</p>
+                <p>{product ? 'Editar' : 'Cadastrar'} Produto</p>
             </div>
 
             <form onSubmit={handleSubmit} className="grid grid-cols-4 gap-x-4 gap-y-8 p-8 w-full shadow-sm rounded-md">
@@ -171,8 +187,9 @@ export default function Forms({handleContainer}){
                 <Input type={"number"} label={"NCM"} placeholder={"Insira o NCM"} name={"ncm"} value={formData.ncm} onChange={handleChange} colSpan={"col-span-1"} />
                 <Input type={"number"} label={"CEST"} placeholder={"Insira o CEST"} name={"cest"} value={formData.cest} onChange={handleChange} colSpan={"col-span-1"} />
 
-                <div className="col-span-full text-center">
-                    <Button type={'submit'} text={'Cadastrar'} width={'shadow-lg'} />
+                <div className="col-span-full text-center flex w-full justify-center gap-x-2">
+                    <CancelButton type={'button'} text={'Cancelar'} width={'shadow-lg'} onClick={handleContainer} />
+                    <Button type={'submit'} text={'Confirmar'} width={'shadow-lg'} />
                 </div>
             </form>
         </div>

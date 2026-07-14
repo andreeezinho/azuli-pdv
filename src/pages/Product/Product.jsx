@@ -4,13 +4,18 @@ import ListTable from "./components/ListTable";
 import Forms from "./components/Forms";
 
 export default function Product(){
-    const [container, setContainer] = useState(false);
+    const [container, setContainer] = useState(true);
+    const [product, setProduct] = useState(false);
 
-    const handleContainer = async () => {
+    const handleContainer = async (item) => {
         if(container){
             setContainer(false);
         }else{
             setContainer(true);
+        }
+
+        if(item != null){
+            setProduct(item);
         }
     }
 
@@ -28,9 +33,9 @@ export default function Product(){
 
                 <div className="w-full flex flex-col h-full text-secondary p-10">
                     {container ? (
-                        <ListTable />
+                        <ListTable handleContainer={handleContainer} />
                     ) : (
-                        <Forms handleContainer={handleContainer} />
+                        <Forms handleContainer={handleContainer} product={product} />
                     )}
                 </div>
             </div>
