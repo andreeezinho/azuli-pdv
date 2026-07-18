@@ -1,7 +1,7 @@
 import { useState } from "react";
 import formatNumber from "../../helpers/formatNumber";
 import { DeleteModal } from "../Modal/DeleteModal";
-// import { deleteProduct } from "../../services/Produto/ProdutoService";
+import { deleteProduct } from "../../services/Produto/ProdutoService";
 import { toast } from "sonner";
 
 export default function TableBody({item, uuid, nome, codigo, tipo, estoque, preco, grupo, ativo, refresh, handleContainer}){
@@ -11,8 +11,8 @@ export default function TableBody({item, uuid, nome, codigo, tipo, estoque, prec
         e.preventDefault();
 
         try{
-            // const response = await deleteProduct(uuid);
-            
+            const response = await deleteProduct(uuid);
+            console.log(response);
             await refresh();
 
             setDeleteModalOpen(false);

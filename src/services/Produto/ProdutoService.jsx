@@ -42,3 +42,17 @@ export const updateProduct = async (data) => {
         throw error;
     }
 }
+
+export const deleteProduct = async (uuid) => {
+    try{
+        const response = await api.put(`/produtos/${uuid}`, {ativo: 0}, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}

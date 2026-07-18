@@ -11,7 +11,7 @@ export default function ListTable({handleContainer}){
     const [params, setParams] = useState({
         nome_codigo: ""
     });
-    console.log(params);
+    console.log(products);
 
     const list = async (params) => {
         const response = await getProducts(params);
@@ -95,7 +95,7 @@ export default function ListTable({handleContainer}){
                             preco={item.preco}
                             grupo={item?.grupoProduto?.nome}
                             ativo={item.ativo}
-                            refresh={getProducts}
+                            refresh={list}
                             handleContainer={handleContainer}
                         />
                     })}
