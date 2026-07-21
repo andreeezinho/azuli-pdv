@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 export default function SideBar(){
     const { logout } = useAuth();
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
+    const [storeOpen, setStoreOpen] = useState(false);
+    const [invoiceOpen, setInvoiceOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -17,13 +18,13 @@ export default function SideBar(){
         <>
             <div className="p-2 hidden md:block w-[5rem]"></div>
             <header className="px-2 py-4 rounded-lg md:w-[5rem] bg-secondary fixed left-2 right-2 md:left-auto md:right-auto md:top-[2dvh] bottom-[1dvh] md:bottom-[2dvh] z-40 transition-all duration-300 ease-in group md:hover:w-[15%]">
-                <nav className="flex md:flex-col justify-around md:justify-between md:min-h-full gap-x-2 md:gap-x-0">
+                <nav className="flex md:flex-col h-full gap-x-2 md:gap-x-0">
                     <div className="hidden md:flex items-center group md:pl-2 md:pb-3 md:border-b-1 overflow-hidden md:border-b-primary">
                         <img src="/img/site/logo.png" alt="Logo imagem" className="shrink-0 w-10 h-10 ml-1 border border-primary rounded-full" />
                         <p className="hidden md:block text-primary text-sm ps-2 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><span className="font-bold text-2xl">AZULI</span> PDV</p>
                     </div>
 
-                    <div className="flex md:flex-col gap-4 w-full justify-around">
+                    <div className="flex-1 md:flex-col gap-4 w-full h-full overflow-y-auto mt-6">
                         <BarLink link="/home" text="Home" url="/home">
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
                                 <path d="M9.375 21.875V14.7425C9.375 14.086 9.93464 13.5538 10.625 13.5538H14.375C15.0654 13.5538 15.625 14.086 15.625 14.7425V21.875M11.7756 3.34497L3.6506 8.83961C3.32085 9.06261 3.125 9.4236 3.125 9.80839V20.0919C3.125 21.0767 3.96447 21.875 5 21.875H20C21.0355 21.875 21.875 21.0767 21.875 20.0919V9.80839C21.875 9.4236 21.6792 9.06261 21.3494 8.83961L13.2244 3.34497C12.7907 3.05168 12.2093 3.05168 11.7756 3.34497Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -36,7 +37,7 @@ export default function SideBar(){
                             </svg>
                         </BarLink>
 
-                        <button type="button" onClick={() => setOpen(!open)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
+                        <button type="button" onClick={() => setStoreOpen(!storeOpen)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:min-h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
                             <div className="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="current" width="25" height="25" viewBox="0 0 25 25" stroke-width="1.5" stroke="currentColor" className="">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
@@ -48,17 +49,45 @@ export default function SideBar(){
                             </svg>
                         </button>
 
-                        {open && ( 
+                        {storeOpen && ( 
                             <div className="ml-8 pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2 border-l border-gray-500">
                                 <BarLink link="/produtos" text="Produtos" url="/produtos" className="md:h-[30px]" />
-                                <BarLink link="/usuarios" text="Usuários" url="/usuarios" className="md:h-[30px]" />
                                 <BarLink link="/clientes" text="Clientes" url="/clientes" className="md:h-[30px]" />
+                                <BarLink link="/empresas" text="Empresas" url="/empresas" className="md:h-[30px]" />
+                                <BarLink link="/tributacoes" text="Tributações" url="/tributacoes" className="md:h-[30px]" />
+                                <BarLink link="/pagamentos" text="Formas de Pagamentos" url="/pagamentos" className="md:h-[30px]" />
+                                <BarLink link="/usuarios" text="Usuários" url="/usuarios" className="md:h-[30px]" />
                             </div>
                         )}
+
+                        <button type="button" onClick={() => setInvoiceOpen(!invoiceOpen)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:min-h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
+                            <div className="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                </svg>
+                                <p className={`text-primary hidden md:block text-md ms-3 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100`}>Fiscal</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </button>
+
+                        {invoiceOpen && ( 
+                            <div className="ml-8 pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2 border-l border-gray-500">
+                                <BarLink link="/nota-fiscal-entrada" text="Receber NF" url="/nota-fiscal-entrada" className="md:h-[30px]" />
+                                <BarLink link="/nota-fiscal-saida" text="Emitir NFe" url="/nota-fiscal-saida" className="md:h-[30px]" />
+                            </div>
+                        )}
+
+                        <BarLink link="/vendas" text="Vendas" url="/vendas">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                                <path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"  />
+                            </svg>
+                        </BarLink>
                         
                         <BarLink link="/notificacoes" text="Notificações" url="/notificacoes">
                             <svg width="24" height="24" viewBox="0 0 19 20" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                                <path d="M11.919 14.832C13.7822 14.6114 15.6129 14.1717 17.373 13.522C15.8824 11.8708 15.0587 9.7245 15.062 7.5V6.75C15.062 5.1587 14.4299 3.63258 13.3046 2.50736C12.1794 1.38214 10.6533 0.75 9.062 0.75C7.4707 0.75 5.94458 1.38214 4.81936 2.50736C3.69414 3.63258 3.062 5.1587 3.062 6.75V7.5C3.06502 9.72463 2.24099 11.871 0.75 13.522C2.483 14.162 4.31 14.607 6.205 14.832M11.919 14.832C10.021 15.0571 8.10301 15.0571 6.205 14.832M11.919 14.832C12.0631 15.2819 12.0989 15.7594 12.0236 16.2257C11.9482 16.692 11.7638 17.134 11.4854 17.5156C11.2069 17.8972 10.8423 18.2076 10.4212 18.4216C10.0001 18.6356 9.53438 18.7472 9.062 18.7472C8.58962 18.7472 8.12392 18.6356 7.70281 18.4216C7.28169 18.2076 6.91707 17.8972 6.63862 17.5156C6.36017 17.134 6.17576 16.692 6.10041 16.2257C6.02506 15.7594 6.0609 15.2819 6.205 14.832" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M11.919 14.832C13.7822 14.6114 15.6129 14.1717 17.373 13.522C15.8824 11.8708 15.0587 9.7245 15.062 7.5V6.75C15.062 5.1587 14.4299 3.63258 13.3046 2.50736C12.1794 1.38214 10.6533 0.75 9.062 0.75C7.4707 0.75 5.94458 1.38214 4.81936 2.50736C3.69414 3.63258 3.062 5.1587 3.062 6.75V7.5C3.06502 9.72463 2.24099 11.871 0.75 13.522C2.483 14.162 4.31 14.607 6.205 14.832M11.919 14.832C10.021 15.0571 8.10301 15.0571 6.205 14.832M11.919 14.832C12.0631 15.2819 12.0989 15.7594 12.0236 16.2257C11.9482 16.692 11.7638 17.134 11.4854 17.5156C11.2069 17.8972 10.8423 18.2076 10.4212 18.4216C10.0001 18.6356 9.53438 18.7472 9.062 18.7472C8.58962 18.7472 8.12392 18.6356 7.70281 18.4216C7.28169 18.2076 6.91707 17.8972 6.63862 17.5156C6.36017 17.134 6.17576 16.692 6.10041 16.2257C6.02506 15.7594 6.0609 15.2819 6.205 14.832" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </BarLink>
 
