@@ -8,6 +8,7 @@ export default function SideBar(){
     const navigate = useNavigate();
     const [storeOpen, setStoreOpen] = useState(false);
     const [invoiceOpen, setInvoiceOpen] = useState(false);
+    const [reportOpen, setReportOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -60,7 +61,7 @@ export default function SideBar(){
                             </div>
                         )}
 
-                        <button type="button" onClick={() => setInvoiceOpen(!invoiceOpen)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:min-h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
+                        <button type="button" onClick={() => setInvoiceOpen(!invoiceOpen)} className={`bg-[#30384b] mt-4 fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:min-h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
                             <div className="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
@@ -81,9 +82,30 @@ export default function SideBar(){
 
                         <BarLink link="/vendas" text="Vendas" url="/vendas">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                                <path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"  />
+                                <path stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
                             </svg>
                         </BarLink>
+
+                        <button type="button" onClick={() => setReportOpen(!reportOpen)} className={`bg-[#30384b] fill-none hover:bg-secondary-dark w-9 h-9 md:w-full md:min-h-[60px] flex items-center justify-between md:justify-between rounded-md p-1 md:p-0 md:px-5 overflow-hidden group cursor-pointer text-primary`}>
+                            <div className="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                </svg>
+                                <p className={`text-primary hidden md:block text-md ms-3 whitespace-nowrap opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100`}>Relatórios</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </button>
+
+                        {reportOpen && ( 
+                            <div className="ml-8 pl-2 overflow-hidden group cursor-pointer flex flex-col gap-y-2 border-l border-gray-500">
+                                <BarLink link="/relatorio-" text="Vendas" url="/relatorio-" className="md:h-[30px]" />
+                                <BarLink link="/relatorio-" text="Movimentação de Caixa" url="/relatorio-" className="md:h-[30px]" />
+                                <BarLink link="/relatorio-" text="Movimentação Financeira" url="/relatorio-" className="md:h-[30px]" />
+                                <BarLink link="/relatorio-" text="Curva ABC" url="/relatorio-" className="md:h-[30px]" />
+                            </div>
+                        )}
                         
                         <BarLink link="/notificacoes" text="Notificações" url="/notificacoes">
                             <svg width="24" height="24" viewBox="0 0 19 20" fill="current" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
